@@ -1,0 +1,126 @@
+<nav class="tw-bg-themeColor tw-text-white tw-border-gray-200">
+  <div
+    class="tw-max-w-screen-xl tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-mx-auto tw-p-4"
+  >
+    <span
+      [routerLink]="['/user']"
+      class="tw-text-2xl tw-font-semibold tw-cursor-pointer"
+      (click)="navbarCloseState = true"
+      >My-Cart
+    </span>
+    <div class="tw-flex md:tw-order-1">
+      <button
+        type="button"
+        class="md:tw-hidden tw-text-white tw-p-2.5 tw-me-1"
+        (click)="toggleNavbar()"
+      >
+        <ng-container
+          [ngTemplateOutlet]="searchIconSVG"
+          [ngTemplateOutletContext]="{ class: 'tw-w-5 tw-h-5' }"
+        />
+      </button>
+      <div class="tw-relative tw-hidden md:tw-block">
+        <div
+          class="tw-absolute tw-inset-y-0 tw-start-0 tw-flex tw-items-center tw-ps-3"
+        >
+          <ng-container
+            [ngTemplateOutlet]="searchIconSVG"
+            [ngTemplateOutletContext]="{
+              class: 'tw-w-4 tw-h-4 tw-text-gray-500'
+            }"
+          />
+        </div>
+        <input
+          type="text"
+          id="search-navbar"
+          class="tw-w-full tw-p-2 tw-ps-10 tw-text-sm tw-text-gray-900 tw-rounded-lg tw-outline-none !tw-outline-0"
+          placeholder="Search..."
+        />
+      </div>
+      <button
+        type="button"
+        class="md:tw-hidden tw-text-white tw-p-2.5 tw-me-1"
+        (click)="toggleNavbar()"
+      >
+        <svg
+          class="tw-w-5 tw-h-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="tw-items-center tw-justify-between tw-w-full md:tw-flex md:tw-w-auto md:tw-order-2"
+      [class]="{
+        'tw-hidden': navbarCloseState
+      }"
+    >
+      <div class="tw-relative tw-mt-3 md:tw-hidden">
+        <div
+          class="tw-absolute tw-inset-y-0 tw-start-0 tw-flex tw-items-center tw-ps-3"
+        >
+          <ng-container
+            [ngTemplateOutlet]="searchIconSVG"
+            [ngTemplateOutletContext]="{
+              class: 'tw-w-4 tw-h-4 tw-text-gray-500'
+            }"
+          />
+        </div>
+        <input
+          type="text"
+          id="search-navbar"
+          class="tw-w-full tw-p-2 tw-ps-10 tw-text-sm tw-text-gray-900 tw-rounded-lg tw-outline-none !tw-outline-0"
+          placeholder="Search..."
+        />
+      </div>
+      <ul
+        class="tw-flex tw-flex-col tw-p-4 md:tw-p-0 tw-mt-4 tw-font-medium tw-border tw-border-gray-100 tw-rounded-lg md:tw-space-x-8 tw-rtl:space-x-reverse md:tw-flex-row md:tw-mt-0 md:tw-border-0"
+      >
+        <li>
+          <a
+            class="tw-block tw-py-2 tw-px-3 tw-text-white tw-rounded md:hover:tw-text-blue-700 md:tw-p-0"
+            [routerLink]="['/auth']"
+            >Login</a
+          >
+        </li>
+        <li>
+          <a
+            class="tw-block tw-py-2 tw-px-3 tw-text-white tw-rounded md:hover:tw-text-blue-700 md:tw-bg-transparent md:tw-p-0"
+            [routerLink]="['/user', 'cart']"
+            [routerLinkActive]="['md:tw-text-blue-700', 'tw-bg-blue-700']"
+            (click)="isMobile && toggleNavbar()"
+            >Cart</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<ng-template #searchIconSVG let-class="class">
+  <svg
+    [class]="class"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 20 20"
+  >
+    <path
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+    />
+  </svg>
+</ng-template>
