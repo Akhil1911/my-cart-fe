@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+  --light-blue: #E1EBF0;
+  --white: #ffffff;
+  --primary-blue:#A9CDD4;
+  --secondary-blue:#477A91;
+}
+
+.theme-btn-light {
+  background-color: var(--light-blue);
+  border: 3px solid var(--light-blue);
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+.theme-btn-light:hover {
+  background-color: var(--white);
+  border: 3px solid var(--light-blue);
+  border-radius: 5px;
+  padding: 10px 15px;
+  transition: all 0.5s ease-in;
+}
+
+.theme-btn-primary {
+  background-color: var(--primary-blue);
+  border: 3px solid var(--primary-blue);
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+.theme-btn-primary:hover {
+  background-color: var(--white);
+  border: 3px solid var(--primary-blue);
+  border-radius: 5px;
+  padding: 10px 15px;
+  transition: all 0.5s ease-in;
+}
+
+.theme-btn-secondary {
+  background-color: var(--secondary-blue);
+  border: 3px solid var(--secondary-blue);
+  border-radius: 5px;
+  padding: 10px 15px;
+  color: var(--white);
+}
+
+.theme-btn-secondary:hover {
+  background-color: var(--white);
+  border: 3px solid var(--secondary-blue);
+  border-radius: 5px;
+  padding: 10px 15px;
+  transition: all 0.5s ease-in;
+  color: var(--secondary-blue);
+}
