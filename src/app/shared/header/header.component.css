@@ -1,0 +1,15 @@
+.custom-ul li:not(:first-child) {
+  margin-left: 1rem;
+}
+.custom-ul li:last-child {
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+  .custom-ul li:nth-child(2) {
+    margin-left: 0 !important;
+  }
+}
+.user-account.dropdown-toggle::after {
+  display: none;
+}
