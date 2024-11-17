@@ -1,126 +1,159 @@
 <nav class="tw-bg-themeColor tw-text-white tw-border-gray-200">
   <div
-    class="tw-max-w-screen-xl tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-mx-auto tw-p-4"
+    class="tw-max-w-screen-xl tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-mx-auto tw-p-3 lg:tw-p-4"
   >
-    <span
-      [routerLink]="['/user']"
-      class="tw-text-2xl tw-font-semibold tw-cursor-pointer"
-      (click)="navbarCloseState = true"
-      >My-Cart
-    </span>
-    <div class="tw-flex md:tw-order-1">
-      <button
-        type="button"
-        class="md:tw-hidden tw-text-white tw-p-2.5 tw-me-1"
-        (click)="toggleNavbar()"
-      >
-        <ng-container
-          [ngTemplateOutlet]="searchIconSVG"
-          [ngTemplateOutletContext]="{ class: 'tw-w-5 tw-h-5' }"
+    <div>
+      <span
+        [routerLink]="['/user']"
+        class="tw-text-2xl lg:tw-text-2xl tw-font-semibold tw-cursor-pointer"
+        >My-Cart
+      </span>
+    </div>
+    <div class="tw-relative tw-hidden md:tw-flex tw-items-center">
+      <input
+        type="text"
+        class="tw-w-96 tw-p-2 tw-ps-4 tw-text-sm tw-text-gray-900 tw-outline-none !tw-outline-0 tw-rounded-sm"
+        placeholder="Search Kareeee......"
+      />
+      <button>
+        <ng-icon
+          name="matSearchOutline"
+          size="28"
+          color="gray"
+          class="tw-absolute tw-right-2 tw-top-1"
         />
-      </button>
-      <div class="tw-relative tw-hidden md:tw-block">
-        <div
-          class="tw-absolute tw-inset-y-0 tw-start-0 tw-flex tw-items-center tw-ps-3"
-        >
-          <ng-container
-            [ngTemplateOutlet]="searchIconSVG"
-            [ngTemplateOutletContext]="{
-              class: 'tw-w-4 tw-h-4 tw-text-gray-500'
-            }"
-          />
-        </div>
-        <input
-          type="text"
-          id="search-navbar"
-          class="tw-w-full tw-p-2 tw-ps-10 tw-text-sm tw-text-gray-900 tw-rounded-lg tw-outline-none !tw-outline-0"
-          placeholder="Search..."
-        />
-      </div>
-      <button
-        type="button"
-        class="md:tw-hidden tw-text-white tw-p-2.5 tw-me-1"
-        (click)="toggleNavbar()"
-      >
-        <svg
-          class="tw-w-5 tw-h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 17 14"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 1h15M1 7h15M1 13h15"
-          />
-        </svg>
       </button>
     </div>
-    <div
-      class="tw-items-center tw-justify-between tw-w-full md:tw-flex md:tw-w-auto md:tw-order-2"
-      [class]="{
-        'tw-hidden': navbarCloseState
-      }"
-    >
-      <div class="tw-relative tw-mt-3 md:tw-hidden">
-        <div
-          class="tw-absolute tw-inset-y-0 tw-start-0 tw-flex tw-items-center tw-ps-3"
-        >
-          <ng-container
-            [ngTemplateOutlet]="searchIconSVG"
-            [ngTemplateOutletContext]="{
-              class: 'tw-w-4 tw-h-4 tw-text-gray-500'
-            }"
-          />
-        </div>
-        <input
-          type="text"
-          id="search-navbar"
-          class="tw-w-full tw-p-2 tw-ps-10 tw-text-sm tw-text-gray-900 tw-rounded-lg tw-outline-none !tw-outline-0"
-          placeholder="Search..."
-        />
-      </div>
-      <ul
-        class="tw-flex tw-flex-col tw-p-4 md:tw-p-0 tw-mt-4 tw-font-medium tw-border tw-border-gray-100 tw-rounded-lg md:tw-space-x-8 tw-rtl:space-x-reverse md:tw-flex-row md:tw-mt-0 md:tw-border-0"
-      >
+    <div>
+      <ul class="tw-flex tw-items-center tw-justify-between tw-gap-4">
         <li>
-          <a
-            class="tw-block tw-py-2 tw-px-3 tw-text-white tw-rounded md:hover:tw-text-blue-700 md:tw-p-0"
-            [routerLink]="['/auth']"
-            >Login</a
-          >
-        </li>
-        <li>
-          <a
-            class="tw-block tw-py-2 tw-px-3 tw-text-white tw-rounded md:hover:tw-text-blue-700 md:tw-bg-transparent md:tw-p-0"
+          <button
+            class="tw-cursor-help tw-flex"
             [routerLink]="['/user', 'cart']"
-            [routerLinkActive]="['md:tw-text-blue-700', 'tw-bg-blue-700']"
-            (click)="isMobile && toggleNavbar()"
-            >Cart</a
+            [routerLinkActive]="['tw-text-activeColor']"
           >
+            <ng-icon name="matShoppingCartOutline" size="28" />
+          </button>
+        </li>
+
+        <!-- Jo login hase to profile wadu dekhase baki login (aama user-admin wise alag batavu padse, e decide karie pachi) -->
+        @if(true){
+        <li ngbDropdown>
+          <button
+            type="button"
+            id="userAccountDropdown"
+            class="tw-flex user-account"
+            ngbDropdownToggle
+          >
+            <ng-icon name="matAccountCircleOutline" size="28" />
+          </button>
+          <div ngbDropdownMenu aria-labelledby="userAccountDropdown">
+            <button ngbDropdownItem>My Orders</button>
+            <button ngbDropdownItem>My Profile</button>
+            <button ngbDropdownItem>Logout</button>
+          </div>
+        </li>
+        }@else{
+        <li class="tw-cursor-pointer tw-flex">
+          <ng-icon name="matLoginOutline" size="28" />
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  <!-- Aa search che ne mobile view mate che samji gaya ne bhaioooo -->
+  <div class="tw-relative tw-flex tw-items-center md:tw-hidden tw-px-2 tw-pb-2">
+    <input
+      type="text"
+      class="tw-w-full lg:tw-w-96 tw-p-2 tw-ps-4 tw-py-3 tw-text-sm tw-text-gray-900 tw-outline-none !tw-outline-0 tw-rounded-sm"
+      placeholder="Search Kareeee......"
+    />
+    <button>
+      <ng-icon
+        name="matSearchOutline"
+        size="28"
+        color="gray"
+        class="tw-absolute tw-right-4 tw-top-2"
+      />
+    </button>
+  </div>
+</nav>
+
+<!-- Admin hase to user and product show karse, baki categories -->
+@if(false){
+<nav class="tw-bg-gray-300">
+  <div class="tw-max-w-screen-xl tw-p-3 tw-mx-auto tw-overflow-x-auto">
+    <div class="tw-flex tw-items-center">
+      <ul
+        class="tw-flex tw-flex-row tw-font-medium tw-mt-0 tw-text-sm custom-ul"
+      >
+        <li class="tw-text-gray-900 tw-hidden md:tw-block tw-text-nowrap">
+          <p>Shop By Categories &nbsp; |</p>
+        </li>
+        @for(category of categories;track category){
+        <li>
+          <a class="tw-text-gray-900 hover:tw-underline tw-text-nowrap">
+            {{ category.name }}
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
+} @else {
+<nav class="tw-bg-gray-300">
+  <div class="tw-max-w-screen-xl tw-p-3 tw-mx-auto">
+    <div class="tw-flex tw-items-center">
+      <ul
+        class="tw-flex tw-flex-row tw-font-medium tw-mt-0 tw-text-sm tw-gap-4"
+      >
+        <li ngbDropdown>
+          <button
+            type="button"
+            id="AdminUserDropdown"
+            class="tw-flex tw-items-center tw-gap-1"
+            ngbDropdownToggle
+          >
+            Users
+          </button>
+          <div ngbDropdownMenu aria-labelledby="AdminUserDropdown">
+            <button ngbDropdownItem>View All Users</button>
+            <button ngbDropdownItem>View All Orders</button>
+            <button ngbDropdownItem>Add User</button>
+          </div>
+        </li>
+        <li ngbDropdown>
+          <button
+            type="button"
+            id="AdminProductDropdown"
+            class="tw-flex tw-items-center tw-gap-1"
+            ngbDropdownToggle
+          >
+            Products
+          </button>
+          <div ngbDropdownMenu aria-labelledby="AdminProductDropdown">
+            <button ngbDropdownItem>View All Products</button>
+            <button ngbDropdownItem>Add Products</button>
+          </div>
+        </li>
+        <li ngbDropdown>
+          <button
+            type="button"
+            id="AdminCategoryDropdown"
+            class="tw-flex tw-items-center tw-gap-1"
+            ngbDropdownToggle
+          >
+            Categories
+          </button>
+          <div ngbDropdownMenu aria-labelledby="AdminCategoryDropdown">
+            <button ngbDropdownItem>View All Categories</button>
+            <button ngbDropdownItem>Add Categories</button>
+          </div>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
-<ng-template #searchIconSVG let-class="class">
-  <svg
-    [class]="class"
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 20 20"
-  >
-    <path
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-    />
-  </svg>
-</ng-template>
+}
