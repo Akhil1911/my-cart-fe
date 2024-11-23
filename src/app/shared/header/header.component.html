@@ -4,7 +4,7 @@
   >
     <div>
       <span
-        [routerLink]="['/user']"
+        (click)="handleHome()"
         class="tw-text-2xl lg:tw-text-2xl tw-font-semibold tw-cursor-pointer"
         >My-Cart
       </span>
@@ -26,18 +26,19 @@
     </div>
     <div>
       <ul class="tw-flex tw-items-center tw-justify-between tw-gap-4">
+        @if(activeUserRole() === 'user'){
         <li>
           <button
-            class="tw-cursor-help tw-flex"
             [routerLink]="['/user', 'cart']"
-            [routerLinkActive]="['tw-text-activeColor']"
+            class="tw-cursor-help tw-flex"
           >
             <ng-icon name="matShoppingCartOutline" size="28" />
           </button>
         </li>
+        }
 
         <!-- Jo login hase to profile wadu dekhase baki login (aama user-admin wise alag batavu padse, e decide karie pachi) -->
-        @if(true){
+        @if(activeUserRole() !== 'guest'){
         <li ngbDropdown>
           <button
             type="button"
@@ -48,13 +49,19 @@
             <ng-icon name="matAccountCircleOutline" size="28" />
           </button>
           <div ngbDropdownMenu aria-labelledby="userAccountDropdown">
-            <button ngbDropdownItem>My Orders</button>
-            <button ngbDropdownItem>My Profile</button>
-            <button ngbDropdownItem>Logout</button>
+            @if(activeUserRole() === 'user'){
+            <button [routerLink]="['/user', 'order-history']" ngbDropdownItem>
+              My Orders
+            </button>
+            }
+            <button [routerLink]="['my-profile']" ngbDropdownItem>
+              My Profile
+            </button>
+            <button (click)="handleLogout()" ngbDropdownItem>Logout</button>
           </div>
         </li>
         }@else{
-        <li class="tw-cursor-pointer tw-flex">
+        <li class="tw-cursor-pointer tw-flex" (click)="handleLogin()">
           <ng-icon name="matLoginOutline" size="28" />
         </li>
         }
@@ -81,7 +88,54 @@
 </nav>
 
 <!-- Admin hase to user and product show karse, baki categories -->
-@if(false){
+@if(activeUserRole() === 'admin'){
+<nav class="tw-bg-gray-300">
+  <div class="tw-max-w-screen-xl tw-p-3 tw-mx-auto">
+    <div class="tw-flex tw-items-center">
+      <ul
+        class="tw-flex tw-flex-row tw-font-medium tw-mt-0 tw-text-sm tw-gap-4"
+      >
+        <li>
+          <button
+            [routerLink]="['/admin', 'manage-user']"
+            type="button"
+            class="tw-flex tw-items-center tw-gap-1"
+          >
+            Users
+          </button>
+        </li>
+        <li>
+          <button
+            [routerLink]="['/admin', 'manage-products']"
+            type="button"
+            class="tw-flex tw-items-center tw-gap-1"
+          >
+            Products
+          </button>
+        </li>
+        <li>
+          <button
+            [routerLink]="['/admin', 'manage-categories']"
+            type="button"
+            class="tw-flex tw-items-center tw-gap-1"
+          >
+            Categories
+          </button>
+        </li>
+        <li>
+          <button
+            [routerLink]="['/admin', 'manage-brands']"
+            type="button"
+            class="tw-flex tw-items-center tw-gap-1"
+          >
+            Brands
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+} @else {
 <nav class="tw-bg-gray-300">
   <div class="tw-max-w-screen-xl tw-p-3 tw-mx-auto tw-overflow-x-auto">
     <div class="tw-flex tw-items-center">
@@ -93,65 +147,14 @@
         </li>
         @for(category of categories;track category){
         <li>
-          <a class="tw-text-gray-900 hover:tw-underline tw-text-nowrap">
+          <button
+            class="tw-text-gray-900 hover:tw-underline tw-text-nowrap tw-cursor-pointer"
+            (click)="handleNavigateToCategory(category.name)"
+          >
             {{ category.name }}
-          </a>
+          </button>
         </li>
         }
-      </ul>
-    </div>
-  </div>
-</nav>
-} @else {
-<nav class="tw-bg-gray-300">
-  <div class="tw-max-w-screen-xl tw-p-3 tw-mx-auto">
-    <div class="tw-flex tw-items-center">
-      <ul
-        class="tw-flex tw-flex-row tw-font-medium tw-mt-0 tw-text-sm tw-gap-4"
-      >
-        <li ngbDropdown>
-          <button
-            type="button"
-            id="AdminUserDropdown"
-            class="tw-flex tw-items-center tw-gap-1"
-            ngbDropdownToggle
-          >
-            Users
-          </button>
-          <div ngbDropdownMenu aria-labelledby="AdminUserDropdown">
-            <button ngbDropdownItem>View All Users</button>
-            <button ngbDropdownItem>View All Orders</button>
-            <button ngbDropdownItem>Add User</button>
-          </div>
-        </li>
-        <li ngbDropdown>
-          <button
-            type="button"
-            id="AdminProductDropdown"
-            class="tw-flex tw-items-center tw-gap-1"
-            ngbDropdownToggle
-          >
-            Products
-          </button>
-          <div ngbDropdownMenu aria-labelledby="AdminProductDropdown">
-            <button ngbDropdownItem>View All Products</button>
-            <button ngbDropdownItem>Add Products</button>
-          </div>
-        </li>
-        <li ngbDropdown>
-          <button
-            type="button"
-            id="AdminCategoryDropdown"
-            class="tw-flex tw-items-center tw-gap-1"
-            ngbDropdownToggle
-          >
-            Categories
-          </button>
-          <div ngbDropdownMenu aria-labelledby="AdminCategoryDropdown">
-            <button ngbDropdownItem>View All Categories</button>
-            <button ngbDropdownItem>Add Categories</button>
-          </div>
-        </li>
       </ul>
     </div>
   </div>
