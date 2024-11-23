@@ -45,8 +45,8 @@ export class HeaderComponent implements OnInit {
   }
   handleLogin() {
     //api response role ... can do given work in service 😉...
-    this.store.setActiveUser('admin');
-    this.router.navigate(['/admin']);
+    this.store.setActiveUser('user');
+    this.router.navigate(['/user']);
   }
 
   handleNavigateToCategory(category: string) {

@@ -5,12 +5,7 @@ export const AppRoute: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'admin',
-  },
-  {
-    path: 'my-profile',
-    title: 'Profile',
-    component: ProfileComponent,
+    redirectTo: 'user',
   },
   {
     path: 'admin',

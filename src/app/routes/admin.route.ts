@@ -4,35 +4,43 @@ import { UserManagementComponent } from '../pages/admin/user-management/user-man
 import { ProductManagementComponent } from '../pages/admin/product-management/product-management.component';
 import { CategoryManagementComponent } from '../pages/admin/category-management/category-management.component';
 import { BrandManagementComponent } from '../pages/admin/brand-management/brand-management.component';
+import { LayoutComponent } from '../shared/layout/layout.component';
+
 export const AdminRoute: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'dashboard',
-  },
-  {
-    path: 'dashboard',
-    title: 'Admin - Dashboard',
-    component: AdminDashboardComponent,
-  },
-  {
-    path: 'manage-user',
-    title: 'Admin - Manage User',
-    component: UserManagementComponent,
-  },
-  {
-    path: 'manage-products',
-    title: 'Admin - Manage Products',
-    component: ProductManagementComponent,
-  },
-  {
-    path: 'manage-categories',
-    title: 'Admin - Manage Categories',
-    component: CategoryManagementComponent,
-  },
-  {
-    path: 'manage-brands',
-    title: 'Admin - Manage Brands',
-    component: BrandManagementComponent,
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard',
+      },
+      {
+        path: 'dashboard',
+        title: 'Admin - Dashboard',
+        component: AdminDashboardComponent,
+      },
+      {
+        path: 'manage-user',
+        title: 'Admin - Manage User',
+        component: UserManagementComponent,
+      },
+      {
+        path: 'manage-products',
+        title: 'Admin - Manage Products',
+        component: ProductManagementComponent,
+      },
+      {
+        path: 'manage-categories',
+        title: 'Admin - Manage Categories',
+        component: CategoryManagementComponent,
+      },
+      {
+        path: 'manage-brands',
+        title: 'Admin - Manage Brands',
+        component: BrandManagementComponent,
+      },
+    ],
   },
 ];

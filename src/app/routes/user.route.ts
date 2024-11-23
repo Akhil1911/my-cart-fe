@@ -4,36 +4,47 @@ import { ProductDetailComponent } from '../pages/user/product-detail/product-det
 import { CartComponent } from '../pages/user/cart/cart.component';
 import { CheckoutComponent } from '../pages/user/checkout/checkout.component';
 import { OrderHistoryComponent } from '../pages/user/order-history/order-history.component';
-
+import { ProfileComponent } from '../pages/user/profile/profile.component';
+import { LayoutComponent } from '../shared/layout/layout.component';
 export const UserRoute: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'products',
-  },
-  {
-    path: 'products',
-    title: 'Products',
-    component: ProductListComponent,
-  },
-  {
-    path: 'product/:name',
-    title: 'Product Detail',
-    component: ProductDetailComponent,
-  },
-  {
-    path: 'cart',
-    title: 'Cart',
-    component: CartComponent,
-  },
-  {
-    path: 'checkout',
-    title: 'Checkout',
-    component: CheckoutComponent,
-  },
-  {
-    path: 'order-history',
-    title: 'Order History',
-    component: OrderHistoryComponent,
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'products',
+      },
+      {
+        path: 'products',
+        component: ProductListComponent,
+      },
+      {
+        path: 'product/:name',
+        title: 'Product Detail',
+        component: ProductDetailComponent,
+      },
+      {
+        path: 'cart',
+        title: 'Cart',
+        component: CartComponent,
+      },
+      {
+        path: 'checkout',
+        title: 'Checkout',
+        component: CheckoutComponent,
+      },
+      {
+        path: 'order-history',
+        title: 'Order History',
+        component: OrderHistoryComponent,
+      },
+      {
+        path: 'my-profile',
+        title: 'Profile',
+        component: ProfileComponent,
+      },
+    ],
   },
 ];
