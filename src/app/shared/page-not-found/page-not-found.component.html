@@ -1,4 +1,4 @@
-<section class="tw-bg-white">
+<section class="tw-bg-white tw-h-svh tw-flex tw-justify-center tw-items-center">
   <div
     class="tw-py-8 tw-px-4 tw-mx-auto tw-max-w-screen-xl lg:tw-py-16 lg:tw-px-6"
   >
@@ -14,10 +14,11 @@
         Something's missing.
       </p>
       <p class="tw-mb-4 tw-text-lg tw-font-light tw-text-gray-500">
-        Sorry, we can't find that page. page.
+        Sorry, we can't find that page.
       </p>
       <a
-        class="tw-inline-flex tw-text-white tw-bg-themeColor hover:tw-bg-themeColorDark tw-font-medium tw-rounded-lg tw-text-sm tw-px-5 tw-py-2.5 tw-text-center tw-my-4"
+        (click)="handleRedirect()"
+        class="tw-inline-flex tw-cursor-pointer tw-text-white tw-bg-themeColor tw-font-medium tw-rounded-lg tw-text-sm tw-px-5 tw-py-2.5 tw-text-center tw-my-4 hover:tw-bg-themeColorDark hover:tw-scale-150 tw-transition-all tw-duration-500"
         >Back to Homepage</a
       >
     </div>
